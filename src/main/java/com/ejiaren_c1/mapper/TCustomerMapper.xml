@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejiaren_c1.mapper.TCustomerMapper">
+	<resultMap id="BaseResultMap" type="com.ejiaren_c1.pojo.TCustomer">
+
+		<id column="ID" property="id" jdbcType="VARCHAR" /> 
+		
+		
+		<result column="CUSTNAME" property="custname" jdbcType="VARCHAR" />
+		<result column="CONTNAME" property="contname" jdbcType="VARCHAR" />
+		<result column="PS" property="ps" jdbcType="VARCHAR" />
+		<result column="CONTGENDER" property="contgender" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="LEVEL_ID" property="levelId" jdbcType="VARCHAR" />
+		<result column="MES_TIME" property="mesTime" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="CUSTOMERADDRESS" property="customeraddress"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERAVERAGEINDOOR" property="customeraverageindoor"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMEREMAIL" property="customeremail"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERINTENTCOUNTRY" property="customerintentcountry"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERINTENTDEGREE" property="customerintentdegree"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERINTENTSKILL" property="customerintentskill"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERINTENTTIME" property="customerintenttime"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERLEVEL" property="customerlevel"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERPHONE" property="customerphone"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERQQ" property="customerqq" jdbcType="VARCHAR" />
+		<result column="CUSTOMERSCHOOL" property="customerschool"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERSKILLINDOOR" property="customerskillindoor"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERTIME" property="customertime" jdbcType="VARCHAR" />
+		<result column="CUSTOMERWECHAT" property="customerwechat"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERSTATE" property="customerstate"
+			jdbcType="VARCHAR" />
+		<result column="meettime" property="meettime" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="CUSTOMERMEETSTATE" property="customermeetstate"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERGENIUS" property="customergenius"
+			jdbcType="VARCHAR" />
+		<result column="OPERTIONTIME" property="opertiontime" jdbcType="VARCHAR" />
+		<result column="resources" property="resources" jdbcType="VARCHAR" />
+		<result column="CUSTOMERLANGUAGE" property="customerlanguage"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERLANGUAGESCORE" property="customerlanguagescore"
+			jdbcType="VARCHAR" />
+		<result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+		<result column="CUSTOMERLANGUAGE1" property="customerlanguage1"
+			jdbcType="VARCHAR" />
+		<result column="CUSTOMERLANGUAGESCORE1" property="customerlanguagescore1"
+			jdbcType="VARCHAR" />
+		<result column="alert" property="alert" jdbcType="INTEGER" />
+		<result column="alertMessage" property="alertmessage" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		ID, CUSTNAME, CONTNAME, PS, CONTGENDER, STATUS, LEVEL_ID, MES_TIME,
+		USER_ID, CUSTOMERADDRESS,
+		CUSTOMERAVERAGEINDOOR, CUSTOMEREMAIL, CUSTOMERINTENTCOUNTRY, CUSTOMERINTENTDEGREE,
+		CUSTOMERINTENTSKILL, CUSTOMERINTENTTIME, CUSTOMERLEVEL, CUSTOMERPHONE,
+		CUSTOMERQQ,
+		CUSTOMERSCHOOL, CUSTOMERSKILLINDOOR, CUSTOMERTIME, CUSTOMERWECHAT, CUSTOMERSTATE,
+		meettime, telephone, CUSTOMERMEETSTATE, CUSTOMERGENIUS, OPERTIONTIME,
+		resources,
+		CUSTOMERLANGUAGE, CUSTOMERLANGUAGESCORE, EXT1, CUSTOMERLANGUAGE1,
+		CUSTOMERLANGUAGESCORE1,
+		alert, alertMessage
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.ejiaren_c1.pojo.TCustomerExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_customer
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_customer
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_customer
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.ejiaren_c1.pojo.TCustomerExample">
+		delete from t_customer
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.ejiaren_c1.pojo.TCustomer">
+		insert into t_customer (ID, CUSTNAME, CONTNAME,
+		PS, CONTGENDER, STATUS,
+		LEVEL_ID, MES_TIME, USER_ID,
+		CUSTOMERADDRESS, CUSTOMERAVERAGEINDOOR,
+		CUSTOMEREMAIL, CUSTOMERINTENTCOUNTRY, CUSTOMERINTENTDEGREE,
+		CUSTOMERINTENTSKILL, CUSTOMERINTENTTIME,
+		CUSTOMERLEVEL, CUSTOMERPHONE, CUSTOMERQQ,
+		CUSTOMERSCHOOL, CUSTOMERSKILLINDOOR, CUSTOMERTIME,
+		CUSTOMERWECHAT, CUSTOMERSTATE, meettime,
+		telephone, CUSTOMERMEETSTATE, CUSTOMERGENIUS,
+		OPERTIONTIME, resources, CUSTOMERLANGUAGE,
+		CUSTOMERLANGUAGESCORE, EXT1, CUSTOMERLANGUAGE1,
+		CUSTOMERLANGUAGESCORE1, alert, alertMessage
+		)
+		values (#{id,jdbcType=VARCHAR}, #{custname,jdbcType=VARCHAR},
+		#{contname,jdbcType=VARCHAR},
+		#{ps,jdbcType=VARCHAR}, #{contgender,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{levelId,jdbcType=VARCHAR}, #{mesTime,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
+		#{customeraddress,jdbcType=VARCHAR}, #{customeraverageindoor,jdbcType=VARCHAR},
+		#{customeremail,jdbcType=VARCHAR},
+		#{customerintentcountry,jdbcType=VARCHAR},
+		#{customerintentdegree,jdbcType=VARCHAR},
+		#{customerintentskill,jdbcType=VARCHAR},
+		#{customerintenttime,jdbcType=VARCHAR},
+		#{customerlevel,jdbcType=VARCHAR}, #{customerphone,jdbcType=VARCHAR},
+		#{customerqq,jdbcType=VARCHAR},
+		#{customerschool,jdbcType=VARCHAR}, #{customerskillindoor,jdbcType=VARCHAR},
+		#{customertime,jdbcType=VARCHAR},
+		#{customerwechat,jdbcType=VARCHAR}, #{customerstate,jdbcType=VARCHAR}, #{meettime,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR}, #{customermeetstate,jdbcType=VARCHAR},
+		#{customergenius,jdbcType=VARCHAR},
+		#{opertiontime,jdbcType=VARCHAR}, #{resources,jdbcType=VARCHAR}, #{customerlanguage,jdbcType=VARCHAR},
+		#{customerlanguagescore,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR},
+		#{customerlanguage1,jdbcType=VARCHAR},
+		#{customerlanguagescore1,jdbcType=VARCHAR}, #{alert,jdbcType=INTEGER},
+		#{alertmessage,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.ejiaren_c1.pojo.TCustomer">
+		insert into t_customer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custname != null">
+				CUSTNAME,
+			</if>
+			<if test="contname != null">
+				CONTNAME,
+			</if>
+			<if test="ps != null">
+				PS,
+			</if>
+			<if test="contgender != null">
+				CONTGENDER,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="levelId != null">
+				LEVEL_ID,
+			</if>
+			<if test="mesTime != null">
+				MES_TIME,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="customeraddress != null">
+				CUSTOMERADDRESS,
+			</if>
+			<if test="customeraverageindoor != null">
+				CUSTOMERAVERAGEINDOOR,
+			</if>
+			<if test="customeremail != null">
+				CUSTOMEREMAIL,
+			</if>
+			<if test="customerintentcountry != null">
+				CUSTOMERINTENTCOUNTRY,
+			</if>
+			<if test="customerintentdegree != null">
+				CUSTOMERINTENTDEGREE,
+			</if>
+			<if test="customerintentskill != null">
+				CUSTOMERINTENTSKILL,
+			</if>
+			<if test="customerintenttime != null">
+				CUSTOMERINTENTTIME,
+			</if>
+			<if test="customerlevel != null">
+				CUSTOMERLEVEL,
+			</if>
+			<if test="customerphone != null">
+				CUSTOMERPHONE,
+			</if>
+			<if test="customerqq != null">
+				CUSTOMERQQ,
+			</if>
+			<if test="customerschool != null">
+				CUSTOMERSCHOOL,
+			</if>
+			<if test="customerskillindoor != null">
+				CUSTOMERSKILLINDOOR,
+			</if>
+			<if test="customertime != null">
+				CUSTOMERTIME,
+			</if>
+			<if test="customerwechat != null">
+				CUSTOMERWECHAT,
+			</if>
+			<if test="customerstate != null">
+				CUSTOMERSTATE,
+			</if>
+			<if test="meettime != null">
+				meettime,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="customermeetstate != null">
+				CUSTOMERMEETSTATE,
+			</if>
+			<if test="customergenius != null">
+				CUSTOMERGENIUS,
+			</if>
+			<if test="opertiontime != null">
+				OPERTIONTIME,
+			</if>
+			<if test="resources != null">
+				resources,
+			</if>
+			<if test="customerlanguage != null">
+				CUSTOMERLANGUAGE,
+			</if>
+			<if test="customerlanguagescore != null">
+				CUSTOMERLANGUAGESCORE,
+			</if>
+			<if test="ext1 != null">
+				EXT1,
+			</if>
+			<if test="customerlanguage1 != null">
+				CUSTOMERLANGUAGE1,
+			</if>
+			<if test="customerlanguagescore1 != null">
+				CUSTOMERLANGUAGESCORE1,
+			</if>
+			<if test="alert != null">
+				alert,
+			</if>
+			<if test="alertmessage != null">
+				alertMessage,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="custname != null">
+				#{custname,jdbcType=VARCHAR},
+			</if>
+			<if test="contname != null">
+				#{contname,jdbcType=VARCHAR},
+			</if>
+			<if test="ps != null">
+				#{ps,jdbcType=VARCHAR},
+			</if>
+			<if test="contgender != null">
+				#{contgender,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="levelId != null">
+				#{levelId,jdbcType=VARCHAR},
+			</if>
+			<if test="mesTime != null">
+				#{mesTime,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="customeraddress != null">
+				#{customeraddress,jdbcType=VARCHAR},
+			</if>
+			<if test="customeraverageindoor != null">
+				#{customeraverageindoor,jdbcType=VARCHAR},
+			</if>
+			<if test="customeremail != null">
+				#{customeremail,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintentcountry != null">
+				#{customerintentcountry,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintentdegree != null">
+				#{customerintentdegree,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintentskill != null">
+				#{customerintentskill,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintenttime != null">
+				#{customerintenttime,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlevel != null">
+				#{customerlevel,jdbcType=VARCHAR},
+			</if>
+			<if test="customerphone != null">
+				#{customerphone,jdbcType=VARCHAR},
+			</if>
+			<if test="customerqq != null">
+				#{customerqq,jdbcType=VARCHAR},
+			</if>
+			<if test="customerschool != null">
+				#{customerschool,jdbcType=VARCHAR},
+			</if>
+			<if test="customerskillindoor != null">
+				#{customerskillindoor,jdbcType=VARCHAR},
+			</if>
+			<if test="customertime != null">
+				#{customertime,jdbcType=VARCHAR},
+			</if>
+			<if test="customerwechat != null">
+				#{customerwechat,jdbcType=VARCHAR},
+			</if>
+			<if test="customerstate != null">
+				#{customerstate,jdbcType=VARCHAR},
+			</if>
+			<if test="meettime != null">
+				#{meettime,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="customermeetstate != null">
+				#{customermeetstate,jdbcType=VARCHAR},
+			</if>
+			<if test="customergenius != null">
+				#{customergenius,jdbcType=VARCHAR},
+			</if>
+			<if test="opertiontime != null">
+				#{opertiontime,jdbcType=VARCHAR},
+			</if>
+			<if test="resources != null">
+				#{resources,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguage != null">
+				#{customerlanguage,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguagescore != null">
+				#{customerlanguagescore,jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				#{ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguage1 != null">
+				#{customerlanguage1,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguagescore1 != null">
+				#{customerlanguagescore1,jdbcType=VARCHAR},
+			</if>
+			<if test="alert != null">
+				#{alert,jdbcType=INTEGER},
+			</if>
+			<if test="alertmessage != null">
+				#{alertmessage,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.ejiaren_c1.pojo.TCustomerExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_customer
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_customer
+		<set>
+			<if test="record.id != null">
+				ID = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.custname != null">
+				CUSTNAME = #{record.custname,jdbcType=VARCHAR},
+			</if>
+			<if test="record.contname != null">
+				CONTNAME = #{record.contname,jdbcType=VARCHAR},
+			</if>
+			<if test="record.ps != null">
+				PS = #{record.ps,jdbcType=VARCHAR},
+			</if>
+			<if test="record.contgender != null">
+				CONTGENDER = #{record.contgender,jdbcType=VARCHAR},
+			</if>
+			<if test="record.status != null">
+				STATUS = #{record.status,jdbcType=VARCHAR},
+			</if>
+			<if test="record.levelId != null">
+				LEVEL_ID = #{record.levelId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.mesTime != null">
+				MES_TIME = #{record.mesTime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userId != null">
+				USER_ID = #{record.userId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customeraddress != null">
+				CUSTOMERADDRESS = #{record.customeraddress,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customeraverageindoor != null">
+				CUSTOMERAVERAGEINDOOR =
+				#{record.customeraverageindoor,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customeremail != null">
+				CUSTOMEREMAIL = #{record.customeremail,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerintentcountry != null">
+				CUSTOMERINTENTCOUNTRY =
+				#{record.customerintentcountry,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerintentdegree != null">
+				CUSTOMERINTENTDEGREE =
+				#{record.customerintentdegree,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerintentskill != null">
+				CUSTOMERINTENTSKILL = #{record.customerintentskill,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerintenttime != null">
+				CUSTOMERINTENTTIME = #{record.customerintenttime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerlevel != null">
+				CUSTOMERLEVEL = #{record.customerlevel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerphone != null">
+				CUSTOMERPHONE = #{record.customerphone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerqq != null">
+				CUSTOMERQQ = #{record.customerqq,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerschool != null">
+				CUSTOMERSCHOOL = #{record.customerschool,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerskillindoor != null">
+				CUSTOMERSKILLINDOOR = #{record.customerskillindoor,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customertime != null">
+				CUSTOMERTIME = #{record.customertime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerwechat != null">
+				CUSTOMERWECHAT = #{record.customerwechat,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerstate != null">
+				CUSTOMERSTATE = #{record.customerstate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.meettime != null">
+				meettime = #{record.meettime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.telephone != null">
+				telephone = #{record.telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customermeetstate != null">
+				CUSTOMERMEETSTATE = #{record.customermeetstate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customergenius != null">
+				CUSTOMERGENIUS = #{record.customergenius,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opertiontime != null">
+				OPERTIONTIME = #{record.opertiontime,jdbcType=VARCHAR},
+			</if>
+			<if test="record.resources != null">
+				resources = #{record.resources,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerlanguage != null">
+				CUSTOMERLANGUAGE = #{record.customerlanguage,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerlanguagescore != null">
+				CUSTOMERLANGUAGESCORE =
+				#{record.customerlanguagescore,jdbcType=VARCHAR},
+			</if>
+			<if test="record.ext1 != null">
+				EXT1 = #{record.ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerlanguage1 != null">
+				CUSTOMERLANGUAGE1 = #{record.customerlanguage1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.customerlanguagescore1 != null">
+				CUSTOMERLANGUAGESCORE1 =
+				#{record.customerlanguagescore1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.alert != null">
+				alert = #{record.alert,jdbcType=INTEGER},
+			</if>
+			<if test="record.alertmessage != null">
+				alertMessage = #{record.alertmessage,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_customer
+		set ID = #{record.id,jdbcType=VARCHAR},
+		CUSTNAME = #{record.custname,jdbcType=VARCHAR},
+		CONTNAME = #{record.contname,jdbcType=VARCHAR},
+		PS = #{record.ps,jdbcType=VARCHAR},
+		CONTGENDER = #{record.contgender,jdbcType=VARCHAR},
+		STATUS = #{record.status,jdbcType=VARCHAR},
+		LEVEL_ID = #{record.levelId,jdbcType=VARCHAR},
+		MES_TIME = #{record.mesTime,jdbcType=VARCHAR},
+		USER_ID = #{record.userId,jdbcType=VARCHAR},
+		CUSTOMERADDRESS = #{record.customeraddress,jdbcType=VARCHAR},
+		CUSTOMERAVERAGEINDOOR = #{record.customeraverageindoor,jdbcType=VARCHAR},
+		CUSTOMEREMAIL = #{record.customeremail,jdbcType=VARCHAR},
+		CUSTOMERINTENTCOUNTRY = #{record.customerintentcountry,jdbcType=VARCHAR},
+		CUSTOMERINTENTDEGREE =
+		#{record.customerintentdegree,jdbcType=VARCHAR},
+		CUSTOMERINTENTSKILL = #{record.customerintentskill,jdbcType=VARCHAR},
+		CUSTOMERINTENTTIME = #{record.customerintenttime,jdbcType=VARCHAR},
+		CUSTOMERLEVEL = #{record.customerlevel,jdbcType=VARCHAR},
+		CUSTOMERPHONE = #{record.customerphone,jdbcType=VARCHAR},
+		CUSTOMERQQ = #{record.customerqq,jdbcType=VARCHAR},
+		CUSTOMERSCHOOL = #{record.customerschool,jdbcType=VARCHAR},
+		CUSTOMERSKILLINDOOR = #{record.customerskillindoor,jdbcType=VARCHAR},
+		CUSTOMERTIME = #{record.customertime,jdbcType=VARCHAR},
+		CUSTOMERWECHAT = #{record.customerwechat,jdbcType=VARCHAR},
+		CUSTOMERSTATE = #{record.customerstate,jdbcType=VARCHAR},
+		meettime = #{record.meettime,jdbcType=VARCHAR},
+		telephone = #{record.telephone,jdbcType=VARCHAR},
+		CUSTOMERMEETSTATE = #{record.customermeetstate,jdbcType=VARCHAR},
+		CUSTOMERGENIUS = #{record.customergenius,jdbcType=VARCHAR},
+		OPERTIONTIME = #{record.opertiontime,jdbcType=VARCHAR},
+		resources = #{record.resources,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGE = #{record.customerlanguage,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGESCORE = #{record.customerlanguagescore,jdbcType=VARCHAR},
+		EXT1 = #{record.ext1,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGE1 = #{record.customerlanguage1,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGESCORE1 =
+		#{record.customerlanguagescore1,jdbcType=VARCHAR},
+		alert = #{record.alert,jdbcType=INTEGER},
+		alertMessage = #{record.alertmessage,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ejiaren_c1.pojo.TCustomer">
+		update t_customer
+		<set>
+			<if test="custname != null">
+				CUSTNAME = #{custname,jdbcType=VARCHAR},
+			</if>
+			<if test="contname != null">
+				CONTNAME = #{contname,jdbcType=VARCHAR},
+			</if>
+			<if test="ps != null">
+				PS = #{ps,jdbcType=VARCHAR},
+			</if>
+			<if test="contgender != null">
+				CONTGENDER = #{contgender,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="levelId != null">
+				LEVEL_ID = #{levelId,jdbcType=VARCHAR},
+			</if>
+			<if test="mesTime != null">
+				MES_TIME = #{mesTime,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="customeraddress != null">
+				CUSTOMERADDRESS = #{customeraddress,jdbcType=VARCHAR},
+			</if>
+			<if test="customeraverageindoor != null">
+				CUSTOMERAVERAGEINDOOR = #{customeraverageindoor,jdbcType=VARCHAR},
+			</if>
+			<if test="customeremail != null">
+				CUSTOMEREMAIL = #{customeremail,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintentcountry != null">
+				CUSTOMERINTENTCOUNTRY = #{customerintentcountry,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintentdegree != null">
+				CUSTOMERINTENTDEGREE = #{customerintentdegree,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintentskill != null">
+				CUSTOMERINTENTSKILL = #{customerintentskill,jdbcType=VARCHAR},
+			</if>
+			<if test="customerintenttime != null">
+				CUSTOMERINTENTTIME = #{customerintenttime,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlevel != null">
+				CUSTOMERLEVEL = #{customerlevel,jdbcType=VARCHAR},
+			</if>
+			<if test="customerphone != null">
+				CUSTOMERPHONE = #{customerphone,jdbcType=VARCHAR},
+			</if>
+			<if test="customerqq != null">
+				CUSTOMERQQ = #{customerqq,jdbcType=VARCHAR},
+			</if>
+			<if test="customerschool != null">
+				CUSTOMERSCHOOL = #{customerschool,jdbcType=VARCHAR},
+			</if>
+			<if test="customerskillindoor != null">
+				CUSTOMERSKILLINDOOR = #{customerskillindoor,jdbcType=VARCHAR},
+			</if>
+			<if test="customertime != null">
+				CUSTOMERTIME = #{customertime,jdbcType=VARCHAR},
+			</if>
+			<if test="customerwechat != null">
+				CUSTOMERWECHAT = #{customerwechat,jdbcType=VARCHAR},
+			</if>
+			<if test="customerstate != null">
+				CUSTOMERSTATE = #{customerstate,jdbcType=VARCHAR},
+			</if>
+			<if test="meettime != null">
+				meettime = #{meettime,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="customermeetstate != null">
+				CUSTOMERMEETSTATE = #{customermeetstate,jdbcType=VARCHAR},
+			</if>
+			<if test="customergenius != null">
+				CUSTOMERGENIUS = #{customergenius,jdbcType=VARCHAR},
+			</if>
+			<if test="opertiontime != null">
+				OPERTIONTIME = #{opertiontime,jdbcType=VARCHAR},
+			</if>
+			<if test="resources != null">
+				resources = #{resources,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguage != null">
+				CUSTOMERLANGUAGE = #{customerlanguage,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguagescore != null">
+				CUSTOMERLANGUAGESCORE = #{customerlanguagescore,jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				EXT1 = #{ext1,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguage1 != null">
+				CUSTOMERLANGUAGE1 = #{customerlanguage1,jdbcType=VARCHAR},
+			</if>
+			<if test="customerlanguagescore1 != null">
+				CUSTOMERLANGUAGESCORE1 = #{customerlanguagescore1,jdbcType=VARCHAR},
+			</if>
+			<if test="alert != null">
+				alert = #{alert,jdbcType=INTEGER},
+			</if>
+			<if test="alertmessage != null">
+				alertMessage = #{alertmessage,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ejiaren_c1.pojo.TCustomer">
+		update t_customer
+		set CUSTNAME = #{custname,jdbcType=VARCHAR},
+		CONTNAME = #{contname,jdbcType=VARCHAR},
+		PS = #{ps,jdbcType=VARCHAR},
+		CONTGENDER = #{contgender,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		LEVEL_ID = #{levelId,jdbcType=VARCHAR},
+		MES_TIME = #{mesTime,jdbcType=VARCHAR},
+		USER_ID = #{userId,jdbcType=VARCHAR},
+		CUSTOMERADDRESS = #{customeraddress,jdbcType=VARCHAR},
+		CUSTOMERAVERAGEINDOOR = #{customeraverageindoor,jdbcType=VARCHAR},
+		CUSTOMEREMAIL = #{customeremail,jdbcType=VARCHAR},
+		CUSTOMERINTENTCOUNTRY = #{customerintentcountry,jdbcType=VARCHAR},
+		CUSTOMERINTENTDEGREE = #{customerintentdegree,jdbcType=VARCHAR},
+		CUSTOMERINTENTSKILL = #{customerintentskill,jdbcType=VARCHAR},
+		CUSTOMERINTENTTIME = #{customerintenttime,jdbcType=VARCHAR},
+		CUSTOMERLEVEL = #{customerlevel,jdbcType=VARCHAR},
+		CUSTOMERPHONE = #{customerphone,jdbcType=VARCHAR},
+		CUSTOMERQQ = #{customerqq,jdbcType=VARCHAR},
+		CUSTOMERSCHOOL = #{customerschool,jdbcType=VARCHAR},
+		CUSTOMERSKILLINDOOR = #{customerskillindoor,jdbcType=VARCHAR},
+		CUSTOMERTIME = #{customertime,jdbcType=VARCHAR},
+		CUSTOMERWECHAT = #{customerwechat,jdbcType=VARCHAR},
+		CUSTOMERSTATE = #{customerstate,jdbcType=VARCHAR},
+		meettime = #{meettime,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		CUSTOMERMEETSTATE = #{customermeetstate,jdbcType=VARCHAR},
+		CUSTOMERGENIUS = #{customergenius,jdbcType=VARCHAR},
+		OPERTIONTIME = #{opertiontime,jdbcType=VARCHAR},
+		resources = #{resources,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGE = #{customerlanguage,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGESCORE = #{customerlanguagescore,jdbcType=VARCHAR},
+		EXT1 = #{ext1,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGE1 = #{customerlanguage1,jdbcType=VARCHAR},
+		CUSTOMERLANGUAGESCORE1 = #{customerlanguagescore1,jdbcType=VARCHAR},
+		alert = #{alert,jdbcType=INTEGER},
+		alertMessage = #{alertmessage,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

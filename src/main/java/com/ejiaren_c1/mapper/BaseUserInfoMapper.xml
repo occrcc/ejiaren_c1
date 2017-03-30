@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejiaren_c1.mapper.BaseUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ejiaren_c1.pojo.BaseUserInfo" >
+    <id column="LOGIN_ID" property="loginId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="ISUSED" property="isused" jdbcType="CHAR" />
+    <result column="PS" property="ps" jdbcType="VARCHAR" />
+    <result column="OFF_TEL" property="offTel" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="CHAR" />
+    <result column="INDEX_ORDER" property="indexOrder" jdbcType="INTEGER" />
+    <result column="TL_USER" property="tlUser" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LOGIN_ID, USER_NAME, PASSWD, ISUSED, PS, OFF_TEL, MOBILE, EMAIL, IMG, IS_DEFAULT, 
+    INDEX_ORDER, TL_USER, PARENT_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ejiaren_c1.pojo.BaseUserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from base_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_user_info
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from base_user_info
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ejiaren_c1.pojo.BaseUserInfoExample" >
+    delete from base_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ejiaren_c1.pojo.BaseUserInfo" >
+    insert into base_user_info (LOGIN_ID, USER_NAME, PASSWD, 
+      ISUSED, PS, OFF_TEL, MOBILE, 
+      EMAIL, IMG, IS_DEFAULT, 
+      INDEX_ORDER, TL_USER, PARENT_ID
+      )
+    values (#{loginId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, 
+      #{isused,jdbcType=CHAR}, #{ps,jdbcType=VARCHAR}, #{offTel,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{isDefault,jdbcType=CHAR}, 
+      #{indexOrder,jdbcType=INTEGER}, #{tlUser,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ejiaren_c1.pojo.BaseUserInfo" >
+    insert into base_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginId != null" >
+        LOGIN_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="passwd != null" >
+        PASSWD,
+      </if>
+      <if test="isused != null" >
+        ISUSED,
+      </if>
+      <if test="ps != null" >
+        PS,
+      </if>
+      <if test="offTel != null" >
+        OFF_TEL,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="img != null" >
+        IMG,
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT,
+      </if>
+      <if test="indexOrder != null" >
+        INDEX_ORDER,
+      </if>
+      <if test="tlUser != null" >
+        TL_USER,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginId != null" >
+        #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="isused != null" >
+        #{isused,jdbcType=CHAR},
+      </if>
+      <if test="ps != null" >
+        #{ps,jdbcType=VARCHAR},
+      </if>
+      <if test="offTel != null" >
+        #{offTel,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="indexOrder != null" >
+        #{indexOrder,jdbcType=INTEGER},
+      </if>
+      <if test="tlUser != null" >
+        #{tlUser,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ejiaren_c1.pojo.BaseUserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from base_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update base_user_info
+    <set >
+      <if test="record.loginId != null" >
+        LOGIN_ID = #{record.loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null" >
+        PASSWD = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isused != null" >
+        ISUSED = #{record.isused,jdbcType=CHAR},
+      </if>
+      <if test="record.ps != null" >
+        PS = #{record.ps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offTel != null" >
+        OFF_TEL = #{record.offTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.img != null" >
+        IMG = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefault != null" >
+        IS_DEFAULT = #{record.isDefault,jdbcType=CHAR},
+      </if>
+      <if test="record.indexOrder != null" >
+        INDEX_ORDER = #{record.indexOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.tlUser != null" >
+        TL_USER = #{record.tlUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update base_user_info
+    set LOGIN_ID = #{record.loginId,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      PASSWD = #{record.passwd,jdbcType=VARCHAR},
+      ISUSED = #{record.isused,jdbcType=CHAR},
+      PS = #{record.ps,jdbcType=VARCHAR},
+      OFF_TEL = #{record.offTel,jdbcType=VARCHAR},
+      MOBILE = #{record.mobile,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      IMG = #{record.img,jdbcType=VARCHAR},
+      IS_DEFAULT = #{record.isDefault,jdbcType=CHAR},
+      INDEX_ORDER = #{record.indexOrder,jdbcType=INTEGER},
+      TL_USER = #{record.tlUser,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ejiaren_c1.pojo.BaseUserInfo" >
+    update base_user_info
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        PASSWD = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="isused != null" >
+        ISUSED = #{isused,jdbcType=CHAR},
+      </if>
+      <if test="ps != null" >
+        PS = #{ps,jdbcType=VARCHAR},
+      </if>
+      <if test="offTel != null" >
+        OFF_TEL = #{offTel,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        IMG = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="indexOrder != null" >
+        INDEX_ORDER = #{indexOrder,jdbcType=INTEGER},
+      </if>
+      <if test="tlUser != null" >
+        TL_USER = #{tlUser,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ejiaren_c1.pojo.BaseUserInfo" >
+    update base_user_info
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      ISUSED = #{isused,jdbcType=CHAR},
+      PS = #{ps,jdbcType=VARCHAR},
+      OFF_TEL = #{offTel,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      IMG = #{img,jdbcType=VARCHAR},
+      IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+      INDEX_ORDER = #{indexOrder,jdbcType=INTEGER},
+      TL_USER = #{tlUser,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR}
+    where LOGIN_ID = #{loginId,jdbcType=VARCHAR}
+  </update>
+</mapper>
